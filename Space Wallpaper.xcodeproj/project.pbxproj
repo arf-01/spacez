@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F71595222D2F0ED1000906F2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F71595212D2F0ED1000906F2 /* FirebaseAuth */; };
+		F71595242D2F0EDB000906F2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F71595232D2F0EDB000906F2 /* FirebaseFirestore */; };
+		F71595262D2F0EEE000906F2 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = F71595252D2F0EEE000906F2 /* FirebaseDatabase */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		F715950A2D2F0628000906F2 /* Space Wallpaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Space Wallpaper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +29,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F71595262D2F0EEE000906F2 /* FirebaseDatabase in Frameworks */,
+				F71595222D2F0ED1000906F2 /* FirebaseAuth in Frameworks */,
+				F71595242D2F0EDB000906F2 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33,6 +42,7 @@
 			isa = PBXGroup;
 			children = (
 				F715950C2D2F0628000906F2 /* Space Wallpaper */,
+				F71595202D2F0ED1000906F2 /* Frameworks */,
 				F715950B2D2F0628000906F2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +53,13 @@
 				F715950A2D2F0628000906F2 /* Space Wallpaper.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F71595202D2F0ED1000906F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -65,6 +82,9 @@
 			);
 			name = "Space Wallpaper";
 			packageProductDependencies = (
+				F71595212D2F0ED1000906F2 /* FirebaseAuth */,
+				F71595232D2F0EDB000906F2 /* FirebaseFirestore */,
+				F71595252D2F0EEE000906F2 /* FirebaseDatabase */,
 			);
 			productName = "Space Wallpaper";
 			productReference = F715950A2D2F0628000906F2 /* Space Wallpaper.app */;
@@ -94,6 +114,9 @@
 			);
 			mainGroup = F71595012D2F0628000906F2;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F715951F2D2F0EB8000906F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F715950B2D2F0628000906F2 /* Products */;
 			projectDirPath = "";
@@ -322,6 +345,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F715951F2D2F0EB8000906F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F71595212D2F0ED1000906F2 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F715951F2D2F0EB8000906F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		F71595232D2F0EDB000906F2 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F715951F2D2F0EB8000906F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		F71595252D2F0EEE000906F2 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F715951F2D2F0EB8000906F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F71595022D2F0628000906F2 /* Project object */;
 }
