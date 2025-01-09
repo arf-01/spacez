@@ -1,31 +1,43 @@
 import SwiftUI
 import FirebaseAuth
 
-struct APOD: Identifiable, Decodable {
-    let id = UUID() // Unique identifier for SwiftUI List
+struct APOD: Codable, Identifiable {
+    let id = UUID()  // For SwiftUI List
     let title: String
     let url: String
-    let explanation: String
     let date: String
+    let explanation: String
 }
 
 struct HomeView: View {
-    @State private var apods: [APOD] = []  // Array to store APOD data
-    @State private var isLoading = false  // State to indicate loading status
-    @Binding var isLoggedIn: Bool         // Logout binding
+    @State private var apods: [APOD] = [] // Array to store APOD data
+    @State private var isLoading = false // Loading state
+    @Binding var isLoggedIn: Bool        // Logout binding
 
     var body: some View {
         NavigationView {
             VStack {
-                if apods.isEmpty {
+                if apods.isEmpty && isLoading {
                     ProgressView("Loading photos...")
                         .onAppear {
                             fetchAPODs()
                         }
                 } else {
-                    List(apods) { apod in
-                        NavigationLink(destination: DetailsView(apod: apod)) {
-                            APODRow(apod: apod)
+                    List {
+                        ForEach(apods) { apod in
+                            NavigationLink(destination: DetailsView(apod: apod)) {
+                                APODRow(apod: apod)
+                            }
+                        }
+
+                        // Infinite scrolling trigger
+                        if !isLoading {
+                            Color.clear
+                                .onAppear {
+                                    fetchAPODs()
+                                }
+                        } else {
+                            ProgressView("Loading more...")
                         }
                     }
                 }
@@ -34,13 +46,12 @@ struct HomeView: View {
                     logout()
                 }
                 .buttonStyle(.borderedProminent)
-                .padding(.top, 10)
+                .padding()
             }
             .navigationTitle("NASA APOD")
         }
     }
 
-    // Function to fetch APOD data from the NASA API
     func fetchAPODs() {
         guard !isLoading else { return }
         isLoading = true
@@ -49,12 +60,15 @@ struct HomeView: View {
         guard let url = URL(string: urlString) else { return }
 
         URLSession.shared.dataTask(with: url) { data, response, error in
-            isLoading = false
+            DispatchQueue.main.async {
+                isLoading = false
+            }
+
             if let data = data {
                 do {
                     let fetchedAPODs = try JSONDecoder().decode([APOD].self, from: data)
                     DispatchQueue.main.async {
-                        apods = fetchedAPODs
+                        apods.append(contentsOf: fetchedAPODs)
                     }
                 } catch {
                     print("Error decoding APOD data: \(error)")
@@ -65,7 +79,6 @@ struct HomeView: View {
         }.resume()
     }
 
-    // Logout function
     func logout() {
         do {
             try Auth.auth().signOut()
@@ -76,7 +89,6 @@ struct HomeView: View {
     }
 }
 
-// Row view for each APOD
 struct APODRow: View {
     let apod: APOD
 
@@ -104,4 +116,3 @@ struct APODRow: View {
         }
     }
 }
-
