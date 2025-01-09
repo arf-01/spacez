@@ -1,25 +1,18 @@
-
 import SwiftUI
 import Firebase
 
 @main
-
-struct Space_WallpaperApp: App{
+struct Space_WallpaperApp: App {
     
-    init()
-    {
+    init() {
         FirebaseApp.configure()
-        
     }
     
-    var body: some Scene{
-        
-        WindowGroup{
+    var body: some Scene {
+        WindowGroup {
             ContentView()
         }
     }
-    
-    
-    
-    
 }
+
+
