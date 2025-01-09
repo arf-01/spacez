@@ -1,17 +1,25 @@
-//
-//  Space_WallpaperApp.swift
-//  Space Wallpaper
-//
-//  Created by Abu Loman Hossain Shuvo on 1/9/25.
-//
 
 import SwiftUI
+import Firebase
 
 @main
-struct Space_WallpaperApp: App {
-    var body: some Scene {
-        WindowGroup {
+
+struct Space_WallpaperApp: App{
+    
+    init()
+    {
+        FirebaseApp.configure()
+        
+    }
+    
+    var body: some Scene{
+        
+        WindowGroup{
             ContentView()
         }
     }
+    
+    
+    
+    
 }
