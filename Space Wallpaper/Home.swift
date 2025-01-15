@@ -12,7 +12,7 @@ struct APOD: Codable, Identifiable {
 struct HomeView: View {
     @State private var apods: [APOD] = [] // Array to store APOD data
     @State private var isLoading = false // Loading state
-    @Binding var isLoggedIn: Bool        // Logout binding
+    @Binding var isLoggedIn: Bool
 
     var body: some View {
         NavigationView {
@@ -47,6 +47,19 @@ struct HomeView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .padding()
+
+                Spacer()
+
+                // Bottom navigation button
+                NavigationLink(destination: FavouritesView()) {
+                    Text("Go to Favourites")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                }
             }
             .navigationTitle("NASA APOD")
         }
